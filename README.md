@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # movie_ticket_booking_app
 
 A new Flutter project.
@@ -14,3 +15,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# movy---Ticket-Booking-App
+>>>>>>> 8cc58c92373641f31d8d435840dd848c5cc6c60c
