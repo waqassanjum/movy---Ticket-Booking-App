@@ -127,7 +127,7 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                               hintStyle: TextStyle(color: TColors.white),
-                              fillColor: Colors.transparent,
+                              fillColor: Colors.white,
                             ),
                           ),
                         ),
@@ -190,7 +190,13 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Obx(() => Container(
+      bottomNavigationBar: Obx(
+        () => ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          child: Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -223,19 +229,20 @@ class HomeScreen extends StatelessWidget {
                 },
                 backgroundColor: Colors.transparent,
                 indicatorColor: Colors.white,
-                destinations: [
-                  const NavigationDestination(
-                      icon: Icon(Icons.home), label: 'Home'),
-                  const NavigationDestination(
+                destinations: const [
+                  NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+                  NavigationDestination(
                       icon: Icon(Icons.movie), label: 'Movie'),
-                  const NavigationDestination(
+                  NavigationDestination(
                       icon: Icon(Icons.check), label: 'Check'),
-                  const NavigationDestination(
+                  NavigationDestination(
                       icon: Icon(Icons.inbox), label: 'Inbox'),
                 ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

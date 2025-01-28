@@ -1,44 +1,50 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class TSeatSelection extends StatelessWidget {
-  const TSeatSelection({
-    super.key,
-  });
+  TSeatSelection({super.key});
+
+  final Color selectedColor = Color(0XFFEA4C89);
+  final Color reservedColor = Colors.grey;
+  final Color availableColor = Colors.transparent;
+
+  Color _getSeatColor(Random random) {
+    final seatStates = [selectedColor, reservedColor, availableColor];
+    return seatStates[random.nextInt(seatStates.length)];
+  }
 
   @override
   Widget build(BuildContext context) {
+    final random = Random();
+
     return Expanded(
-      child: GridView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // 4 columns
-          crossAxisSpacing: 8.0, // Space between columns
-          mainAxisSpacing: 8.0, // Space between rows
-          childAspectRatio: 1.2, // Adjust ratio for shape
-        ),
-        itemCount: 36, // Total slots
-        itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              color: index % 2 == 0
-                  ? Color(0xFF5A5A5C)
-                  : Colors.transparent, // Alternating colors
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(color: Colors.grey.shade400, width: 1.5),
-            ),
-            child: Center(
-              child: Text(
-                'Row ${index ~/ 4 + 1} - Seat ${index % 4 + 1}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+      child: Padding(
+        padding: const EdgeInsets.all(25),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 8,
+            crossAxisSpacing: 15,
+            mainAxisSpacing: 15,
+            childAspectRatio: 1.4,
+          ),
+          itemCount: 72,
+          itemBuilder: (context, index) {
+            final seatColor = _getSeatColor(random);
+
+            return Container(
+              decoration: BoxDecoration(
+                color: seatColor,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: seatColor == availableColor
+                      ? Colors.grey.shade400
+                      : seatColor,
+                  width: 1.5,
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

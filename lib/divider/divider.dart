@@ -10,8 +10,8 @@ class TDivider extends StatelessWidget {
     Key? key,
     this.color = Colors.grey,
     this.thickness = 8.0,
-    this.height = 150.0,
-    this.horizontalPadding = 35.0, // Default padding on both sides
+    this.height = 130.0,
+    this.horizontalPadding = 35.0,
   }) : super(key: key);
 
   @override
@@ -41,12 +41,12 @@ class _CurvedDividerPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final path = Path();
-    path.moveTo(0, size.height * 0.5); // Start from the left middle
+    path.moveTo(0, size.height * 0.5);
     path.quadraticBezierTo(
-      size.width * 0.5, // Control point (horizontal center)
-      0, // Control point (vertical min, creates upward curve)
-      size.width, // End point (horizontal right)
-      size.height * 0.5, // End point (vertical center)
+      size.width * 0.5,
+      0,
+      size.width,
+      size.height * 0.5,
     );
 
     canvas.drawPath(path, paint);
