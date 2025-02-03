@@ -16,6 +16,7 @@ class FinalTicket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
         // Custom AppBar
@@ -61,7 +62,7 @@ class FinalTicket extends StatelessWidget {
                   ),
                   child: Image.asset(
                     TImages.onBoardingImage13,
-                    height: 200,
+                    height: size.height * 0.2,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -117,7 +118,6 @@ class FinalTicket extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
 
-                      // Row with Vertical Dividers for Date, Hours, and Seat
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

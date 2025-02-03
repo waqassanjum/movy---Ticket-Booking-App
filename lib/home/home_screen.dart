@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_ticket_booking_app/booking_screen/booking.dart';
 import 'package:movie_ticket_booking_app/bottom_navigation/navigation.dart';
+import 'package:movie_ticket_booking_app/home/widgets/user_details.dart';
 import 'package:movie_ticket_booking_app/layout/layout.dart';
+import 'package:movie_ticket_booking_app/notification/notification_screen.dart';
 import 'package:movie_ticket_booking_app/product_card/product_cart_vertical.dart';
 import 'package:movie_ticket_booking_app/promo_slider/slider.dart';
+import 'package:movie_ticket_booking_app/ticket/ticket.dart';
 import 'package:movie_ticket_booking_app/utils/constants/colors.dart';
 import 'package:movie_ticket_booking_app/utils/constants/image_strings.dart';
-import 'package:movie_ticket_booking_app/utils/constants/sizes.dart'; // Import your booking screen
+import 'package:movie_ticket_booking_app/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -53,7 +56,7 @@ class HomeScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(145),
         child: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           backgroundColor: Colors.transparent,
           flexibleSpace: Container(
             decoration: const BoxDecoration(
@@ -83,10 +86,13 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Image.asset(
-                              TImages.user,
-                              width: 40,
-                              height: 40,
+                            GestureDetector(
+                              onTap: () => Get.to(() => ProfileScreen()),
+                              child: Image.asset(
+                                TImages.user,
+                                width: 40,
+                                height: 40,
+                              ),
                             ),
                             const SizedBox(width: 70),
                             Icon(Icons.location_on, color: TColors.white),
@@ -221,10 +227,22 @@ class HomeScreen extends StatelessWidget {
                 elevation: 0,
                 selectedIndex: controller.selectedIndex.value,
                 onDestinationSelected: (index) {
-                  if (index == 1) {
-                    Get.to(() => const BookingScreen());
+                  if (index == 0) {
+                    controller.selectedIndex.value = 0;
+                    Get.off(() => const HomeScreen());
                   } else {
                     controller.selectedIndex.value = index;
+
+                    if (index == 1) {
+                      controller.selectedIndex.value = 0;
+                      Get.to(() => const BookingScreen());
+                    } else if (index == 2) {
+                      controller.selectedIndex.value = 2;
+                      Get.to(() => const TicketScreen());
+                    } else if (index == 3) {
+                      controller.selectedIndex.value = 2;
+                      Get.to(() => const InboxScreen());
+                    }
                   }
                 },
                 backgroundColor: Colors.transparent,

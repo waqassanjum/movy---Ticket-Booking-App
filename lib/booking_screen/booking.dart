@@ -15,7 +15,12 @@ class BookingScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFF381a22),
         automaticallyImplyLeading: true,
-        leading: Icon(Icons.arrow_back, color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

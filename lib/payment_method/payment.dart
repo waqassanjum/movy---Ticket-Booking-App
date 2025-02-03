@@ -163,6 +163,13 @@ class PaymentScreen extends StatelessWidget {
         padding: const EdgeInsets.all(50),
         child: ElevatedButton(
           onPressed: () => Get.to(() => OrderSummaryScreen()),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFFEA4C89),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 16),
+          ),
           child: const Text(
             'Confirm',
             style: TextStyle(
@@ -170,13 +177,6 @@ class PaymentScreen extends StatelessWidget {
               fontSize: TSizes.md,
               fontWeight: FontWeight.bold,
             ),
-          ),
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFEA4C89),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 16),
           ),
         ),
       ),

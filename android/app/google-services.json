@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "344651766267",
+    "project_id": "movy-ticket-booking-app",
+    "storage_bucket": "movy-ticket-booking-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344651766267:android:ba1fea74e69570d7a2535e",
+        "android_client_info": {
+          "package_name": "com.example.movie_ticket_booking_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlYsmuN6WpdEtZUKYLf0XKCWhWQ2uqlWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

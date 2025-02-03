@@ -20,7 +20,7 @@ class TPromoSlider extends StatelessWidget {
       children: [
         Stack(
           children: [
-            Container(
+            SizedBox(
               height: 200, // Fixed height for the slider container
               child: CarouselSlider(
                 options: CarouselOptions(

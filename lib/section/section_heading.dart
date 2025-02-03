@@ -6,6 +6,7 @@ class TSectionHeading extends StatelessWidget {
     this.textColor,
     this.showActionButton = true,
     this.onPressed,
+    required String title,
   });
 
   final Color? textColor;

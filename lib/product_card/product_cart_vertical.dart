@@ -55,7 +55,7 @@ class TProductCardVertical extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
-                  5,
+                  4,
                   (index) =>
                       const Icon(Icons.star, color: Colors.yellow, size: 12),
                 ),

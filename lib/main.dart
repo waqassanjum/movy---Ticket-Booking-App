@@ -3,10 +3,14 @@ import 'package:get/get.dart';
 import 'package:movie_ticket_booking_app/splash_screen/splash_screen.dart';
 
 void main() {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

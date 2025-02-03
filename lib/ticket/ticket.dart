@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_ticket_booking_app/booking_screen/booking.dart';
 import 'package:movie_ticket_booking_app/bottom_navigation/navigation.dart';
+import 'package:movie_ticket_booking_app/home/home_screen.dart';
 import 'package:movie_ticket_booking_app/notification/notification_screen.dart';
 import 'package:movie_ticket_booking_app/ticket/widget/final_ticket.dart';
 
@@ -48,10 +50,22 @@ class TicketScreen extends StatelessWidget {
                 elevation: 0,
                 selectedIndex: controller.selectedIndex.value,
                 onDestinationSelected: (index) {
-                  if (index == 3) {
-                    Get.to(() => InboxScreen());
+                  if (index == 0) {
+                    controller.selectedIndex.value = 0;
+                    Get.off(() => const HomeScreen());
                   } else {
                     controller.selectedIndex.value = index;
+
+                    if (index == 1) {
+                      // controller.selectedIndex.value = 0;
+                      Get.to(() => const BookingScreen());
+                    } else if (index == 2) {
+                      controller.selectedIndex.value = 2;
+                      Get.to(() => const TicketScreen());
+                    } else if (index == 3) {
+                      controller.selectedIndex.value = 2;
+                      Get.to(() => const InboxScreen());
+                    }
                   }
                 },
                 backgroundColor: Colors.transparent,
@@ -59,9 +73,7 @@ class TicketScreen extends StatelessWidget {
                 destinations: const [
                   NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
                   NavigationDestination(
-                    icon: Icon(Icons.movie),
-                    label: 'Movie',
-                  ),
+                      icon: Icon(Icons.movie), label: 'Movie'),
                   NavigationDestination(
                       icon: Icon(Icons.check), label: 'Check'),
                   NavigationDestination(

@@ -7,12 +7,12 @@ class TDivider extends StatelessWidget {
   final double horizontalPadding;
 
   const TDivider({
-    Key? key,
+    super.key,
     this.color = Colors.grey,
     this.thickness = 8.0,
     this.height = 130.0,
     this.horizontalPadding = 35.0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
