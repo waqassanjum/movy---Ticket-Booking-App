@@ -9,8 +9,8 @@ class TDivider extends StatelessWidget {
   const TDivider({
     super.key,
     this.color = Colors.grey,
-    this.thickness = 8.0,
-    this.height = 130.0,
+    this.thickness = 6.0, // Slightly reduced for better balance
+    this.height = 80, // Reduced from 130 to 80 but still keeping a nice curve
     this.horizontalPadding = 35.0,
   });
 
@@ -41,12 +41,12 @@ class _CurvedDividerPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final path = Path();
-    path.moveTo(0, size.height * 0.5);
+    path.moveTo(0, size.height * 0.7); // Start lower
     path.quadraticBezierTo(
       size.width * 0.5,
-      0,
+      -size.height * 0.3, // More curve but not too high
       size.width,
-      size.height * 0.5,
+      size.height * 0.7, // End lower
     );
 
     canvas.drawPath(path, paint);

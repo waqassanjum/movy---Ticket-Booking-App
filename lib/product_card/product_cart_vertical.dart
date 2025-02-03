@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movie_ticket_booking_app/booking_screen/booking.dart';
 import 'package:movie_ticket_booking_app/style/shadow_style.dart';
 
 class TProductCardVertical extends StatelessWidget {
@@ -16,16 +18,18 @@ class TProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.to(() => BookingScreen()),
       child: Container(
-        margin: EdgeInsets.only(bottom: 35),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 35),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           boxShadow: [TShadowStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(25),
           color: const Color(0XFF2D2D2D),
         ),
         child: Column(
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // Align content to the left
           children: [
             Stack(
               children: [
@@ -43,7 +47,8 @@ class TProductCardVertical extends StatelessWidget {
             ),
             const SizedBox(height: 5),
             Text(
-              textAlign: TextAlign.start,
+              textAlign:
+                  TextAlign.start, // Align subtitle text to the start (left)
               subtitle,
               style: const TextStyle(
                 color: Colors.white,
@@ -51,14 +56,13 @@ class TProductCardVertical extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 5),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  4,
-                  (index) =>
-                      const Icon(Icons.star, color: Colors.yellow, size: 12),
-                ),
+            Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.start, // Align the stars to the left
+              children: List.generate(
+                4,
+                (index) =>
+                    const Icon(Icons.star, color: Colors.yellow, size: 12),
               ),
             ),
           ],

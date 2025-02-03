@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_ticket_booking_app/ticket/widget/custom_appbar.dart';
 import 'package:movie_ticket_booking_app/utils/constants/image_strings.dart';
 import 'package:movie_ticket_booking_app/utils/constants/sizes.dart';
+import 'package:ticket_widget/ticket_widget.dart';
 
 class FinalTicket extends StatelessWidget {
   const FinalTicket({
@@ -16,10 +17,8 @@ class FinalTicket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        // Custom AppBar
         PreferredSize(
           preferredSize: const Size.fromHeight(145),
           child: AppBar(
@@ -33,42 +32,26 @@ class FinalTicket extends StatelessWidget {
             ),
           ),
         ),
-        // Ticket Container
         Positioned(
           top: 80,
           left: 16,
           right: 16,
-          child: Container(
-            height: 650,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: const Color(0xFFEDEDED),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withAlpha(26),
-                  blurRadius: 10,
-                  spreadRadius: 5,
-                ),
-              ],
-            ),
+          child: TicketWidget(
+            width: 350,
+            height: 633,
+            isCornerRounded: true,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Image Section
                 ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
+                  borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
                     TImages.onBoardingImage13,
-                    height: size.height * 0.2,
+                    height: 169,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
                 ),
-
-                // Text Section
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
@@ -144,14 +127,14 @@ class FinalTicket extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // Vertical Divider
+
                           Container(
                             height: 40,
                             width: 1,
                             color: Colors.grey,
                             margin: const EdgeInsets.symmetric(horizontal: 8),
                           ),
-                          // Hours
+
                           Expanded(
                             child: Column(
                               children: const [
@@ -174,14 +157,14 @@ class FinalTicket extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // Vertical Divider
+
                           Container(
                             height: 40,
                             width: 1,
                             color: Colors.grey,
                             margin: const EdgeInsets.symmetric(horizontal: 8),
                           ),
-                          // Seat
+
                           Expanded(
                             child: Column(
                               children: const [
@@ -211,8 +194,6 @@ class FinalTicket extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // Booking Code
                 const Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
@@ -235,8 +216,6 @@ class FinalTicket extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-                // Pass Key
                 const Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
@@ -259,7 +238,6 @@ class FinalTicket extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: BarcodeWidget(

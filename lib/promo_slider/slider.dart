@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_ticket_booking_app/booking_screen/booking.dart';
 import 'package:movie_ticket_booking_app/home_controller/home_controller.dart';
 import 'package:movie_ticket_booking_app/utils/constants/colors.dart';
 import 'package:movie_ticket_booking_app/utils/constants/sizes.dart';
@@ -56,7 +57,7 @@ class TPromoSlider extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(25),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () => Get.to(() => BookingScreen()),
                             child: Text(
                               'Book Now',
                               style: TextStyle(

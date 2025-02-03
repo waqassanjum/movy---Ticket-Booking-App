@@ -36,12 +36,11 @@ class InboxScreen extends StatelessWidget {
                   const Text(
                     "Notifications",
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 30,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // Filter Button
                   TextButton(
                     onPressed: () => Get.to(() => FeedScreen()),
                     child: const Text(

@@ -76,10 +76,8 @@ class THeaderContainer extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
               child: Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.start, // Aligns text to the start
-                mainAxisSize:
-                    MainAxisSize.min, // Adjusts the size to the content
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     '2:50 PM',

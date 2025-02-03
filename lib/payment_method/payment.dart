@@ -4,8 +4,16 @@ import 'package:movie_ticket_booking_app/order_summary/order_summary.dart';
 import 'package:movie_ticket_booking_app/utils/constants/image_strings.dart';
 import 'package:movie_ticket_booking_app/utils/constants/sizes.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
+
+  @override
+  _PaymentScreenState createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  // Track selected payment method
+  String selectedPayment = '';
 
   @override
   Widget build(BuildContext context) {
@@ -45,39 +53,10 @@ class PaymentScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 30,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black)),
-                          child: Image.asset(
-                            TImages.masterCard,
-                            height: 40,
-                            width: 40,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'Mastercard',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                      Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.blue,
-                          border: Border.all(color: Colors.black, width: 1.5),
-                        ),
-                      ),
-                    ],
+                  _paymentMethodRow(
+                    'Mastercard',
+                    TImages.masterCard,
+                    'masterCard',
                   ),
                   const SizedBox(height: 10),
                   const Divider(
@@ -85,36 +64,10 @@ class PaymentScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black)),
-                        child: Image.asset(
-                          TImages.paypal,
-                          height: 40,
-                          width: 40,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'PayPal',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                      Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.transparent,
-                          border: Border.all(color: Colors.black, width: 1.5),
-                        ),
-                      ),
-                    ],
+                  _paymentMethodRow(
+                    'PayPal',
+                    TImages.paypal,
+                    'paypal',
                   ),
                   const SizedBox(height: 10),
                   const Divider(
@@ -122,36 +75,10 @@ class PaymentScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Container(
-                        height: 30,
-                        width: 40,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black)),
-                        child: Image.asset(
-                          TImages.visa,
-                          height: 40,
-                          width: 40,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'VISA',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Spacer(),
-                      Container(
-                        height: 20,
-                        width: 20,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.transparent,
-                          border: Border.all(color: Colors.black, width: 1.5),
-                        ),
-                      ),
-                    ],
+                  _paymentMethodRow(
+                    'VISA',
+                    TImages.visa,
+                    'visa',
                   ),
                 ],
               ),
@@ -162,7 +89,18 @@ class PaymentScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(50),
         child: ElevatedButton(
-          onPressed: () => Get.to(() => OrderSummaryScreen()),
+          onPressed: () {
+            if (selectedPayment.isNotEmpty) {
+              Get.to(() => OrderSummaryScreen());
+            } else {
+              // Show an alert if no method is selected
+              Get.snackbar(
+                'Error',
+                'Please select a payment method.',
+                snackPosition: SnackPosition.BOTTOM,
+              );
+            }
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFFEA4C89),
             shape: RoundedRectangleBorder(
@@ -180,6 +118,57 @@ class PaymentScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  // Reusable widget to display each payment method row
+  Widget _paymentMethodRow(
+    String paymentMethod,
+    String imageUrl,
+    String methodKey,
+  ) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 30,
+            width: 40,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+            ),
+            child: Image.asset(
+              imageUrl,
+              height: 40,
+              width: 40,
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        Text(
+          paymentMethod,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Spacer(),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              selectedPayment = methodKey;
+            });
+          },
+          child: Container(
+            height: 20,
+            width: 20,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: selectedPayment == methodKey
+                  ? Colors.blue
+                  : Colors.transparent,
+              border: Border.all(color: Colors.black, width: 1.5),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

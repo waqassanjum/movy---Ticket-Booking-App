@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_ticket_booking_app/utils/constants/image_strings.dart';
 import 'package:movie_ticket_booking_app/utils/constants/sizes.dart';
+import 'package:ticket_widget/ticket_widget.dart';
 
 class TicketContainer extends StatelessWidget {
   const TicketContainer({
@@ -9,13 +10,11 @@ class TicketContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return TicketWidget(
+      width: 350,
       height: 600,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color(0xFFEDEDED),
-      ),
-      padding: const EdgeInsets.all(16.0),
+      isCornerRounded: true,
+      padding: EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
